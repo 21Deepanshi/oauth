@@ -8,11 +8,18 @@ function Home() {
     window.location.href = 'http://localhost:5000/auth/google';
   };
 
+    const handleInstagramConnect = () => {
+    window.location.href = '/instagram';
+  };
+
   return (
     <div style={{ textAlign: 'center', marginTop: 100 }}>
       <h1>OAuth Demo</h1>
       <button onClick={handleLogin}>
         Login with Google
+      </button>
+      <button onClick={handleInstagramConnect}>
+        Connect Instagram
       </button>
     </div>
   );

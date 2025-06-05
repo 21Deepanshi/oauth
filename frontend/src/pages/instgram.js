@@ -14,8 +14,8 @@ const ConnectSocials = () => {
         `https://www.instagram.com/oauth/authorize?` +
         `enable_fb_login=0&` +
         `force_authentication=1&` +
-        `client_id=${process.env.VITE_META_APP_ID}&` +
-        `redirect_uri=${process.env.VITE_META_REDIRECT_URI}&` +
+        `client_id=${process.env.REACT_APP_META_APP_ID}&` +
+        `redirect_uri=${process.env.REACT_APP_META_REDIRECT_URI}&` +
         `response_type=code&` +
         `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
 
@@ -58,7 +58,7 @@ const ConnectSocials = () => {
               <span className="font-medium">Connected</span>
             </div>
           ) : (
-            <Button onClick={() => handleConnect("youtube")}>Connect</Button>
+            <button onClick={() => handleConnect("youtube")}>Connect</button>
           )}
         </div>
 
@@ -80,12 +80,12 @@ const ConnectSocials = () => {
               <span className="font-medium">Connected</span>
             </div>
           ) : (
-            <Button onClick={() => handleConnect("instagram")}>Connect</Button>
+            <button onClick={() => handleConnect("instagram")}>Connect</button>
           )}
         </div>
       </div>
 
-      <Button
+      <button
         className="w-full btn-gradient"
         onClick={handleNext}
         disabled={!connected.youtube && !connected.instagram}
@@ -93,7 +93,7 @@ const ConnectSocials = () => {
         {connected.youtube || connected.instagram
           ? "Continue"
           : "Connect at least one account"}
-      </Button>
+      </button>
     </div>
   );
 };
