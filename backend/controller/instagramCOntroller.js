@@ -1,7 +1,4 @@
 const axios = require('axios');
-const { supabase } = require('../services/supabaseService');
-const { downloadVideo } = require('../services/instagramService');
-const { transcribeWithWhisper } = require('../services/transcriptionService');
 
 const {
   META_APP_ID,

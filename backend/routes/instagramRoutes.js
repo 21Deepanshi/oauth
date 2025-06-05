@@ -1,5 +1,5 @@
 const express = require('express');
-const { connectInstagram, instagramCallback } = require('../controllers/instagramCOntroller');
+const { connectInstagram, instagramCallback } = require('../controller/instagramCOntroller');
 
 const router = express.Router();
 

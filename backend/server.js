@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-const instagramRoute = require('./routes/instagramRoute');
+const instagramRoute = require('./routes/instagramRoutes');
 const app = express();
 app.use(cors());
 
