@@ -21,9 +21,9 @@ const ConnectSocials = () => {
 
       window.location.href = authUrl;
     } else if (platform === "youtube") {
-      window.location.href = "http://localhost:5000/auth/google";
+      window.location.href = "https://oauth-p4jc.onrender.com/auth/google";
     }
-
+    
     setConnected((prev) => ({ ...prev, [platform]: true }));
   };
 
