@@ -1,6 +1,7 @@
 // src/App.js
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ConnectSocials from './pages/instgram';
 
 function Home() {
   const handleLogin = () => {
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
+        <Route path='/instagram' element={<ConnectSocials />} /> 
       </Routes>
     </Router>
   );
