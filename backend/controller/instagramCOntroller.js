@@ -92,7 +92,7 @@ const instagramCallback = async (req, res) => {
       }
     }
     
-    res.redirect(`https://oauth-1-l0jt.onrender.com?user_id=${userId}`);
+    res.redirect(`https://oauth-1-l0jt.onrender.com/success?user_id=${userId}`);
   } catch (err) {
     console.error("Failed to fetch Instagram access token or process reels:", err.response?.data || err.message);
     res.status(500).send('Failed to process reels');

@@ -1,11 +1,13 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import ConnectSocials from './pages/instgram';
 
 function Home() {
-    const handleInstagramConnect = () => {
-    window.location.href = '/instagram';
+  const navigate = useNavigate();
+
+  const handleInstagramConnect = () => {
+    navigate('/instagram');
   };
 
   return (
