@@ -5,21 +5,24 @@ const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
-      `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=${APIFY_API_TOKEN}`,
-      {
-        usernames: [username],    // Array of usernames to scrape
-        resultsLimit: 10,         // Limit the number of results
-        searchType: 'user',       // Type of search
-      },
-      {
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+  `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=${APIFY_API_TOKEN}`,
+  {
+    usernames: [username],
+    resultsLimit: 10,
+    searchType: 'user',
+    useLegacyScraper: true, // <-- Add this too
+  },
+  {
+    headers: { 'Content-Type': 'application/json' }
+  }
+);
 
-    const scrapedItems = response.data?.output?.data || [];
-    console.log("Apify scraped data:", scrapedItems);
+console.log("Full Apify response:", JSON.stringify(response.data, null, 2));
 
-    return scrapedItems;
+    // const scrapedItems = response.data?.output?.data || [];
+    // console.log("Apify scraped data:", scrapedItems);
+
+    // return scrapedItems;
   } catch (err) {
     console.error("Apify scraper error:", err.response?.data || err.message);
     return [];
