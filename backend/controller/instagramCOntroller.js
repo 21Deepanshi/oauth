@@ -13,10 +13,9 @@ const connectInstagram = (req, res) => {
     `enable_fb_login=0&` +
     `force_authentication=1&` +
     `client_id=${META_APP_ID}&` +
-    `redirect_uri=${encodeURIComponent(META_REDIRECT_URI)}&` +
+    `redirect_uri=${META_REDIRECT_URI}&` +
     `response_type=code&` +
-    `scope=` +
-    encodeURIComponent('pages_show_list,business_management,instagram_basic,instagram_content_publish,instagram_business_basic,instagram_business_manage_messages,instagram_business_manage_comments,instagram_business_manage_insights');
+    `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
 
   res.redirect(instagramLoginUrl);
 };
@@ -51,7 +50,7 @@ const instagramCallback = async (req, res) => {
 
     console.log("Instagram Short-lived Access Token:", accessToken);
     console.log("Instagram User ID:", userId);
-
+console.log('Using app secret:', META_APP_SECRET ? 'Exists' : 'Missing');
     // Exchange for long-lived access token
     let longLivedToken;
     try {
