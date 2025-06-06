@@ -1,3 +1,7 @@
+const axios = require('axios');
+
+const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
+
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
@@ -6,7 +10,7 @@ async function runApifyInstagramScraper(username) {
         usernames: [username],
         resultsLimit: 10,
         searchType: 'user',
-        useLegacyScraper: true, // ✅ Makes scraping more reliable
+        useLegacyScraper: true,
       },
       {
         headers: { 'Content-Type': 'application/json' }
@@ -18,9 +22,25 @@ async function runApifyInstagramScraper(username) {
     const scrapedItems = response.data?.output?.data || [];
     console.log("Apify scraped data:", scrapedItems);
 
-    return scrapedItems; // ✅ MUST be returned or else `data` will be undefined
+    return scrapedItems;
   } catch (err) {
     console.error("Apify scraper error:", err.response?.data || err.message);
     return [];
   }
 }
+
+// Express route handler
+const instagramApifyOnly = async (req, res) => {
+  const username = req.query.username || 'natgeo';
+  const data = await runApifyInstagramScraper(username);
+
+  if (data.length > 0) {
+    return res.json({ user_id: username, media: data });
+  } else {
+    return res.status(500).send('Apify scraper failed to fetch data');
+  }
+};
+
+module.exports = {
+  instagramApifyOnly,
+};
