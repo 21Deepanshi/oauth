@@ -8,7 +8,6 @@ const {
 
 const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
 
-// 🔁 Fallback: Use Apify Scraper
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
@@ -32,8 +31,6 @@ async function runApifyInstagramScraper(username) {
     return [];
   }
 }
-
-
 
 const instagramCallback = async (req, res) => {
   const code = req.query.code;
@@ -94,7 +91,7 @@ const instagramCallback = async (req, res) => {
     console.error("Instagram API failed, falling back to Apify:", err.response?.data || err.message);
 
     // Step 4: Fallback with Apify
-    const fallbackItems = await runApifyInstagramScraper('natgeo');
+    const fallbackItems = await runApifyInstagramScraper('deepanshi_02020');
 
     if (fallbackItems.length > 0) {
       return res.json({ user_id: 'apify_fallback', media: fallbackItems });
@@ -104,7 +101,7 @@ const instagramCallback = async (req, res) => {
   }
 };
 
-// 🔗 Connect Route
+// Connect Route
 const connectInstagram = (req, res) => {
   const instagramLoginUrl =
     `https://www.instagram.com/oauth/authorize?` +
