@@ -12,12 +12,18 @@ const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
-      `https://api.apify.com/v2/actor-tasks/apify/instagram-scraper/run-sync-get-dataset?token=${APIFY_API_TOKEN}`,
-      { username },
-      { headers: { 'Content-Type': 'application/json' } }
+      `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=${APIFY_API_TOKEN}`,
+      {
+        usernames: [username],
+        resultsLimit: 10,
+        searchType: 'user',
+      },
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
     );
 
-    const scrapedItems = response.data.items || [];
+    const scrapedItems = response.data?.output?.data || [];
     console.log("Apify scraped data:", scrapedItems);
 
     return scrapedItems;
@@ -27,7 +33,8 @@ async function runApifyInstagramScraper(username) {
   }
 }
 
-// 🎯 Main Callback
+
+
 const instagramCallback = async (req, res) => {
   const code = req.query.code;
 
