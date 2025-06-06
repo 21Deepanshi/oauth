@@ -5,9 +5,9 @@ const axios = require('axios');
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
-      `https://api.apify.com/v2/webhooks?token=apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW`,
+      `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW`,
       {
-        usernames: [username],
+        usernames: ['natgeo'],
         resultsLimit: 10,
         searchType: 'user',
         useLegacyScraper: true,
