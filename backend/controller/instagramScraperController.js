@@ -5,7 +5,7 @@ const axios = require('axios');
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
-      `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW`,
+      `https://api.apify.com/v2/webhooks?token=apify_api_NCuTpSycJMJqpQpTeoq4To479tHwQf3OCRt7`,
       {
         usernames: [username],
         resultsLimit: 10,
@@ -15,7 +15,7 @@ async function runApifyInstagramScraper(username) {
         headers: { 'Content-Type': 'application/json' }
       }
     );
-
+    
     console.log("Full Apify response:", JSON.stringify(response.data, null, 2));
 
     const scrapedItems = response.data?.output?.data || [];
@@ -30,7 +30,7 @@ async function runApifyInstagramScraper(username) {
 
 // Express route handler
 const instagramApifyOnly = async (req, res) => {
-  const username = req.query.username || 'natgeo';
+  const username = req.query.username;
   const data = await runApifyInstagramScraper(username);
 
   if (data.length > 0) {
