@@ -65,9 +65,9 @@ const instagramCallback = async (req, res) => {
 
     // Fetch user's media
     // Fetch user's media with the long-lived token
-const mediaResponse = await axios.get(
-  `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp&access_token=${longLivedToken}`
-);
+    const mediaResponse = await axios.get(
+      `https://graph.instagram.com/${userId}/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp&access_token=${longLivedToken}`
+    );
 
 
     const mediaItems = mediaResponse.data.data;
