@@ -8,9 +8,9 @@ const ConnectSocials = () => {
     instagram: false,
   });
 
-  const handleConnect = (platform) => {
+  const handleConnect = async (platform) => {
     if (platform === "instagram") {
-      window.location.href = 'https://oauth-p4jc.onrender.com/api/instagram/connect';
+      // window.location.href = 'https://oauth-p4jc.onrender.com/api/instagram/connect';
       // const authUrl =
       //   `https://www.instagram.com/oauth/authorize?` +
       //   `enable_fb_login=0&` +
@@ -21,6 +21,18 @@ const ConnectSocials = () => {
       //   `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
 
       // window.location.href = authUrl;
+    try {
+      const response = await fetch("https://oauth-p4jc.onrender.com/api/instagram/apify?username=deepanshi_02020");
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Instagram data from Apify:", result);
+        setConnected((prev) => ({ ...prev, instagram: true }));
+      } else {
+        console.error("Failed to connect to Instagram via Apify");
+      }
+    } catch (error) {
+      console.error("Error fetching from Apify:", error);
+    }
     } else if (platform === "youtube") {
       window.location.href = "https://oauth-p4jc.onrender.com/auth/google";
     }
