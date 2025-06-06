@@ -48,27 +48,37 @@ const instagramCallback = async (req, res) => {
     const accessToken = response.data.access_token;
     const userId = response.data.user_id;
 
-    console.log("Instagram Access Token:", accessToken);
+    console.log("Instagram Short-lived Access Token:", accessToken);
     console.log("Instagram User ID:", userId);
 
     // Exchange for long-lived access token
-    const longTokenRes = await axios.get('https://graph.instagram.com/access_token', {
-      params: {
-        grant_type: 'ig_exchange_token',
-        client_secret: META_APP_SECRET,
-        access_token: accessToken,
-      },
-    });
+    let longLivedToken;
+    try {
+      const longTokenRes = await axios.get('https://graph.instagram.com/access_token', {
+        params: {
+          grant_type: 'ig_exchange_token',
+          client_secret: META_APP_SECRET,
+          access_token: accessToken,
+        },
+      });
+      console.log('Long-lived token response:', longTokenRes.data);
+      longLivedToken = longTokenRes.data.access_token;
+    } catch (error) {
+      console.error('Long-lived token exchange error:', error.response?.data || error.message);
+      // fallback to short-lived token if exchange fails
+      longLivedToken = accessToken;
+    }
 
-    const longLivedToken = longTokenRes.data.access_token;
-    console.log("Long-lived token:", longLivedToken);
-
-    // Fetch user's media
-    // Fetch user's media with the long-lived token
+    // Fetch user's media with long-lived token (or short-lived if exchange failed)
     const mediaResponse = await axios.get(
-      `https://graph.instagram.com/${userId}/media?fields=id,caption,media_type,media_url,thumbnail_url,timestamp&access_token=${longLivedToken}`
+      `https://graph.instagram.com/me/media`,
+      {
+        params: {
+          fields: 'id,caption,media_type,media_url,thumbnail_url,timestamp',
+          access_token: longLivedToken,
+        }
+      }
     );
-
 
     const mediaItems = mediaResponse.data.data;
     console.log('Fetched mediaItems:', JSON.stringify(mediaItems, null, 2));
