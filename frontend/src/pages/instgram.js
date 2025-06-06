@@ -10,7 +10,7 @@ const ConnectSocials = () => {
 
   const handleConnect = (platform) => {
     if (platform === "instagram") {
-      window.location.href = "https://oauth-p4jc.onrender.com/api/instagram/connect";
+      window.location.href = "https://oauth-p4jc.onrender.com/api/instagram";
     } else if (platform === "youtube") {
       window.location.href = "https://oauth-p4jc.onrender.com/auth/google";
     }
