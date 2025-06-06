@@ -56,7 +56,6 @@ const instagramCallback = async (req, res) => {
     try {
       const longTokenRes = await axios.get('https://graph.instagram.com/access_token', {
         params: {
-          grant_type: 'ig_exchange_token',
           client_secret: META_APP_SECRET,
           access_token: accessToken,
         },
