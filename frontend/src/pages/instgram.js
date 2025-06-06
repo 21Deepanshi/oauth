@@ -19,10 +19,10 @@ const ConnectSocials = () => {
       //   `redirect_uri=${process.env.REACT_APP_META_REDIRECT_URI}&` +
       //   `response_type=code&` +
       //   `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
-
+      
       // window.location.href = authUrl;
     try {
-      const response = await fetch("https://oauth-p4jc.onrender.com/api/instagram/apify?username=deepanshi_02020");
+      const response = await fetch("https://oauth-p4jc.onrender.com/api/instagram/apify?username=natgeo");
       if (response.ok) {
         const result = await response.json();
         console.log("Instagram data from Apify:", result);

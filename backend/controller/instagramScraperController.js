@@ -28,7 +28,7 @@ async function runApifyInstagramScraper(username) {
 
 // Express route handler that just uses Apify
 const instagramApifyOnly = async (req, res) => {
-  const username = req.query.username || 'deepanshi_02020'; 
+  const username = req.query.username || 'natgeo'; 
   const data = await runApifyInstagramScraper(username);
 
   if (data.length > 0) {
