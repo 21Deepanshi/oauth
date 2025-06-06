@@ -10,16 +10,7 @@ const ConnectSocials = () => {
 
   const handleConnect = (platform) => {
     if (platform === "instagram") {
-      const authUrl =
-        `https://www.instagram.com/oauth/authorize?` +
-        `enable_fb_login=0&` +
-        `force_authentication=1&` +
-        `client_id=${process.env.REACT_APP_META_APP_ID}&` +
-        `redirect_uri=${process.env.REACT_APP_META_REDIRECT_URI}&` +
-        `response_type=code&` +
-        `scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights`;
-
-      window.location.href = authUrl;
+      window.location.href = "https://oauth-p4jc.onrender.com/api/instagram/connect";
     } else if (platform === "youtube") {
       window.location.href = "https://oauth-p4jc.onrender.com/auth/google";
     }
