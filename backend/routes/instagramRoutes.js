@@ -3,7 +3,7 @@ const { connectInstagram, instagramCallback } = require('../controller/instagram
 
 const router = express.Router();
 
-router.get('/instagram/connect', connectInstagram);
-router.get('/instagram/callback', instagramCallback);
+router.get('/connect', connectInstagram);
+router.get('/callback', instagramCallback);
 
 module.exports = router;
