@@ -26,5 +26,5 @@ app.get('/auth/google/callback', (req, res) => {
   res.redirect(`https://oauth-1-l0jt.onrender.com/oauth-success?code=${code}`);
 });
 app.use("/api", instagramRoute);
-app.listen(5000, () => console.log('OAuth server on http://localhost:5000'));
+
 
