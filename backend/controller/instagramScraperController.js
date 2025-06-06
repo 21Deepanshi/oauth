@@ -1,11 +1,11 @@
 const axios = require('axios');
 
-const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
+// const APIFY_API_TOKEN = 'apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW';
 
 async function runApifyInstagramScraper(username) {
   try {
     const response = await axios.post(
-      `https://api.apify.com/v2/acts/apify~instagram-scraper/run-sync?token=${APIFY_API_TOKEN}`,
+      `https://api.apify.com/v2/webhooks?token=apify_api_3xcodHizgYlLzjVSGqQ3cNtxEfZDfq454kbW`,
       {
         usernames: [username],
         resultsLimit: 10,
